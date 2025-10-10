@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AntriDok</string>
+    <string name="hello">Hello, User!</string>
+    <string name="take_queue">Ambil Antrian</string>
+</resources>
