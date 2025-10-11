@@ -1,0 +1,7 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <color android:color="#AAB6FF"/> <!-- background biru muda -->
+    </item>
+    <item android:drawable="@drawable/bg_top_clouds" android:gravity="top"/>
+    <item android:drawable="@drawable/bg_bottom_clouds" android:gravity="bottom"/>
+</layer-list>

@@ -1,0 +1,16 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="640dp"
+    android:viewportWidth="360"
+    android:viewportHeight="640">
+
+    <!-- Background Biru -->
+    <path
+        android:fillColor="#AAB6FF"
+        android:pathData="M0,0h360v260c-80,0 -120,-60 -180,-60S80,260 0,260z" />
+
+    <!-- Awan -->
+    <path
+        android:fillColor="#8090FF"
+        android:pathData="M60,60c20,-30 80,-30 100,0 20,-30 80,-30 100,0 20,-30 80,-30 100,0v200H0z" />
+</vector>

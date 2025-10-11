@@ -2,4 +2,10 @@
     <string name="app_name">AntriDok</string>
     <string name="hello">Hello, User!</string>
     <string name="take_queue">Ambil Antrian</string>
+    <string-array name="gender_options">
+        <item>Select your gender</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
 </resources>

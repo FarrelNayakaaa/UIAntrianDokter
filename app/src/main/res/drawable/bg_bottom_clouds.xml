@@ -1,0 +1,27 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Awan kiri bawah -->
+    <item android:bottom="0dp" android:left="-40dp">
+        <shape android:shape="oval">
+            <size android:width="260dp" android:height="130dp" />
+            <solid android:color="#9DB7FF" />
+        </shape>
+    </item>
+
+    <!-- Awan tengah -->
+    <item android:bottom="20dp" android:left="100dp">
+        <shape android:shape="oval">
+            <size android:width="320dp" android:height="140dp" />
+            <solid android:color="#89A5FF" />
+        </shape>
+    </item>
+
+    <!-- Awan kanan -->
+    <item android:bottom="0dp" android:right="-40dp">
+        <shape android:shape="oval">
+            <size android:width="240dp" android:height="110dp" />
+            <solid android:color="#6F8EFF" />
+        </shape>
+    </item>
+
+</layer-list>
