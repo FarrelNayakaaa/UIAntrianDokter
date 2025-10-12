@@ -27,4 +27,7 @@
     <color name="green_100">#C8F2E0</color> <!-- Background Icon History -->
     <color name="yellow_100">#FFF4B3</color> <!-- Background Icon Notify -->
     <color name="blue_100_icon">#D8E1FF</color>
+
+    <color name="bottom_nav_active">#1E88E5</color>
+    <color name="bottom_nav_inactive">#8A8A8A</color>
 </resources>
