@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="300dp">
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Tombol Kembali di atas kanan -->
+    <Button
+        android:id="@+id/btnCloseMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kembali"
+        android:textAllCaps="false"
+        android:layout_gravity="top|end"
+        android:layout_margin="12dp"
+        android:backgroundTint="@color/primary_blue"
+        android:textColor="@android:color/white"
+        android:elevation="6dp" />
+</FrameLayout>
