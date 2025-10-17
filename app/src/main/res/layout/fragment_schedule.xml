@@ -13,7 +13,6 @@
         android:layout_height="220dp"
         android:background="@drawable/bg_top_curve" />
 
-    <!-- Konten Scroll -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,8 +27,9 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal">
 
-            <!-- Card Antrian & Limit -->
+            <!-- CARD ANTRIAN UTAMA -->
             <LinearLayout
+                android:id="@+id/cardQueue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -41,7 +41,6 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="16dp">
 
-                <!-- Kolom 1 -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -68,14 +67,12 @@
                         android:textSize="28sp" />
                 </LinearLayout>
 
-                <!-- Garis pemisah -->
                 <View
                     android:layout_width="1dp"
                     android:layout_height="50dp"
                     android:background="@color/white"
                     android:layout_marginHorizontal="12dp" />
 
-                <!-- Kolom 2 -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -142,45 +139,39 @@
                 android:textColor="@android:color/white"
                 android:elevation="4dp" />
 
-            <!-- Box hasil ambil antrian -->
+            <!-- CARD NOMOR ANTRIAN SAJA -->
             <LinearLayout
                 android:id="@+id/queueInfoBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@drawable/bg_white_rounded"
-                android:padding="16dp"
-                android:layout_marginTop="20dp"
+                android:padding="18dp"
+                android:layout_marginTop="22dp"
                 android:visibility="gone"
-                android:elevation="4dp">
+                android:elevation="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:animateLayoutChanges="true">
 
                 <TextView
                     android:id="@+id/tvQueueNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nomor Antrian: -"
+                    android:text="Nomor Antrian Anda: -"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tvDistance"
+                    android:id="@+id/tvTapHint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Jarak ke lokasi: -"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:layout_marginTop="4dp" />
-
-                <Button
-                    android:id="@+id/btnDetailQueue"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Lihat Detail Lokasi"
-                    android:textAllCaps="false"
-                    android:layout_marginTop="10dp"
-                    android:backgroundTint="@color/primary_blue"
-                    android:textColor="@android:color/white" />
+                    android:text="(Tap untuk lihat detail)"
+                    android:textColor="@color/gray"
+                    android:textSize="12sp"
+                    android:layout_marginTop="6dp" />
             </LinearLayout>
 
         </LinearLayout>

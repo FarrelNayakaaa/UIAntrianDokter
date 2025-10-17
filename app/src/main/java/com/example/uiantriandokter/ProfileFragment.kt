@@ -25,7 +25,6 @@ class ProfileFragment : Fragment() {
     private lateinit var tvNotificationStatus: TextView
     private var notificationsEnabled = false
 
-    // Launcher untuk izin notifikasi (Android 13+)
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (isGranted) {
@@ -43,7 +42,12 @@ class ProfileFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         tvNotificationStatus = view.findViewById(R.id.tvNotificationStatus)
 
-        // Card Notifications
+        // ✅ Ambil dan tampilkan nama dari SharedPreferences
+        val tvProfileName = view.findViewById<TextView>(R.id.profile_name)
+        val firstName = SharedPrefHelper.getFirstName(requireContext())
+        tvProfileName.text = firstName ?: "User"
+
+        // Card Notifications toggle
         val cardNotif = view.findViewById<View>(R.id.card_notifications)
         cardNotif.setOnClickListener {
             notificationsEnabled = !notificationsEnabled
@@ -57,7 +61,6 @@ class ProfileFragment : Fragment() {
         tvNotificationStatus.text = if (notificationsEnabled) "ON" else "OFF"
 
         if (notificationsEnabled) {
-            // Minta izin notifikasi kalau belum ada (Android 13+)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 if (ActivityCompat.checkSelfPermission(
                         requireContext(),
@@ -78,7 +81,6 @@ class ProfileFragment : Fragment() {
         val channelId = "dokter_queue_channel"
         val notificationId = 101
 
-        // Buat channel untuk Android 8+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 channelId,
@@ -92,7 +94,6 @@ class ProfileFragment : Fragment() {
             manager.createNotificationChannel(channel)
         }
 
-        // Intent untuk membuka MainActivity ketika notifikasi diklik
         val intent = Intent(requireContext(), MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
@@ -104,7 +105,6 @@ class ProfileFragment : Fragment() {
             PendingIntent.FLAG_IMMUTABLE
         )
 
-        // Bangun notifikasi
         val notification = NotificationCompat.Builder(requireContext(), channelId)
             .setSmallIcon(R.drawable.ic_notifications)
             .setContentTitle("Antrian Dokter")
@@ -114,7 +114,6 @@ class ProfileFragment : Fragment() {
             .setAutoCancel(true)
             .build()
 
-        // ✅ Cek izin sebelum tampilkan notifikasi (Android 13+)
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.POST_NOTIFICATIONS
@@ -123,7 +122,6 @@ class ProfileFragment : Fragment() {
             return
         }
 
-        // ✅ Kirim notifikasi (aman tanpa error)
         context?.let {
             with(NotificationManagerCompat.from(it)) {
                 notify(notificationId, notification)

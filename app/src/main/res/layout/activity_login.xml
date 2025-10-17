@@ -74,7 +74,8 @@
             android:hint="Loisbecket@gmail.com"
             android:paddingHorizontal="12dp"
             android:background="@drawable/bg_edittext"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:alpha="0.5" />   <!-- 0.0 = transparan penuh, 1.0 = tidak transparan -->
 
         <!-- Password -->
         <TextView
@@ -92,7 +93,8 @@
             android:hint="******"
             android:paddingHorizontal="12dp"
             android:background="@drawable/bg_edittext"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:alpha="0.5" />
 
         <!-- Remember & Forgot -->
         <LinearLayout
