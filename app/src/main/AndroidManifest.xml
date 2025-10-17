@@ -8,6 +8,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.UIAntrianDokter">
         <activity
+            android:name=".dokter.ui.DoctorDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".dokter.DoctorMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".admin.AdminMainActivity"
             android:exported="false" />
         <activity
