@@ -8,7 +8,6 @@ import com.example.uiantriandokter.databinding.FragmentDoctorHomeBinding
 import com.example.uiantriandokter.dokter.utils.DataDummy
 import com.example.uiantriandokter.R
 
-
 class DoctorHomeFragment : Fragment() {
     private lateinit var binding: FragmentDoctorHomeBinding
     private var index = 0
@@ -17,8 +16,9 @@ class DoctorHomeFragment : Fragment() {
         binding = FragmentDoctorHomeBinding.inflate(inflater, container, false)
         updateUI()
 
+        // Call patient
         binding.btnCall.setOnClickListener {
-            if (DataDummy.patientList.isNotEmpty()) {
+            if (DataDummy.patientList.isNotEmpty() && index < DataDummy.patientList.size) {
                 DataDummy.patientList[index].status = "Called"
                 Toast.makeText(requireContext(), "Pasien dipanggil", Toast.LENGTH_SHORT).show()
                 binding.btnCall.isEnabled = false
@@ -27,30 +27,52 @@ class DoctorHomeFragment : Fragment() {
             }
         }
 
-        binding.btnDone.setOnClickListener {
+        // Close Queue button acts as "Done" in logic
+        binding.btnCloseQueue.setOnClickListener {
             if (DataDummy.patientList.isNotEmpty()) {
                 DataDummy.patientList[index].status = "Done"
                 index++
                 if (index >= DataDummy.patientList.size) {
-                    binding.tvNoPatient.visibility = View.VISIBLE
-                    binding.tvQueue.text = "Tidak ada pasien"
+                    Toast.makeText(requireContext(), "Semua pasien sudah selesai", Toast.LENGTH_SHORT).show()
+                    binding.tvPatientName.text = "Tidak ada pasien"
+                    binding.tvQueueNumber.text = "-"
+                    binding.btnCall.isEnabled = false
+                    binding.btnCall.background = resources.getDrawable(R.drawable.bg_button_gray, null)
                 } else {
-                    Toast.makeText(requireContext(), "Antrian berikutnya", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Pindah ke antrian berikutnya", Toast.LENGTH_SHORT).show()
                     updateUI()
                 }
             }
         }
+
+        // Open Queue just resets the patient index
+        binding.btnOpenQueue.setOnClickListener {
+            index = 0
+            Toast.makeText(requireContext(), "Antrian dibuka kembali", Toast.LENGTH_SHORT).show()
+            updateUI()
+        }
+
         return binding.root
     }
 
     private fun updateUI() {
-        if (index < DataDummy.patientList.size) {
+        if (DataDummy.patientList.isNotEmpty() && index < DataDummy.patientList.size) {
             val p = DataDummy.patientList[index]
-            binding.tvQueue.text = "Antrian Ke ${index + 1} dari ${DataDummy.patientList.size}"
+            binding.tvPatientName.text = "${p.name} (${p.status})"
+            binding.tvQueueNumber.text = "${index + 1}"
+            binding.tvTotalPatients.text = "${DataDummy.patientList.size}"
             binding.btnCall.isEnabled = p.status == "Waiting"
-            binding.tvNoPatient.visibility = View.GONE
+            if (p.status == "Waiting") {
+                binding.btnCall.background = resources.getDrawable(R.drawable.bg_button_green, null)
+            } else {
+                binding.btnCall.background = resources.getDrawable(R.drawable.bg_button_gray, null)
+            }
         } else {
-            binding.tvNoPatient.visibility = View.VISIBLE
+            binding.tvPatientName.text = "Tidak ada pasien"
+            binding.tvQueueNumber.text = "-"
+            binding.tvTotalPatients.text = "${DataDummy.patientList.size}"
+            binding.btnCall.isEnabled = false
+            binding.btnCall.background = resources.getDrawable(R.drawable.bg_button_gray, null)
         }
     }
 }

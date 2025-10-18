@@ -202,12 +202,14 @@
             <Button
                 android:id="@+id/btnOpenQueue"
                 android:text="Buka Antrian"
-                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_margin="8dp"
                 android:background="@drawable/bg_button_blue"
                 android:backgroundTint="@null"
+                app:backgroundTint="@null"
+                android:enabled="true"
                 android:textColor="@android:color/white" />
 
             <Button
@@ -219,6 +221,8 @@
                 android:layout_margin="8dp"
                 android:background="@drawable/bg_button_blue"
                 android:backgroundTint="@null"
+                app:backgroundTint="@null"
+                android:enabled="true"
                 android:textColor="@android:color/white" />
         </LinearLayout>
 
@@ -250,6 +254,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_button_green"
                 android:backgroundTint="@null"
+                app:backgroundTint="@null"
+                android:enabled="true"
                 android:textColor="@android:color/white" />
         </LinearLayout>
 
