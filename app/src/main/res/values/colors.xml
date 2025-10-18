@@ -29,4 +29,11 @@
     <color name="blue_100_icon">#D8E1FF</color>
 
     <color name="red">#F44336</color> <!-- Merah flat Google Material -->
+
+    <!-- Warna abu lembut untuk border dan background -->
+    <color name="gray_100">#F5F5F5</color>
+    <color name="gray_200">#E0E0E0</color>
+
+    <!-- Variasi biru untuk highlight dan efek tekan -->
+    <color name="blue_100">#E3F2FD</color>
 </resources>

@@ -54,6 +54,7 @@ class ScheduleFragment : Fragment() {
             val isRegistered = bundle.getBoolean("isRegistered", false)
             if (isRegistered) {
                 lastPatientData = bundle
+                saveLastPatientToPrefs(bundle) // 🔹 simpan ke SharedPreferences
                 generateQueueAfterRegistration()
             }
         }
@@ -66,11 +67,58 @@ class ScheduleFragment : Fragment() {
                 .commit()
         }
 
+        // 🔹 Saat fragment dibuka, tampilkan data antrian terbaru
+        val currentQueue = QueueHelper.getCurrentQueue(requireContext())
+        val estimation = QueueHelper.getEstimation(requireContext())
+
+        view.findViewById<TextView>(R.id.tvCurrentQueue)?.text = "$currentQueue"
+        view.findViewById<TextView>(R.id.tvLimitPatient)?.text = "$currentQueue/15"
+        view.findViewById<TextView>(R.id.tvEstimation)?.text = "Estimasi Antrian: $estimation Menit"
+
+        // 🔹 Restore antrian terakhir jika ada
+        if (QueueHelper.hasQueue(requireContext())) {
+            val savedName = QueueHelper.getPatientName(requireContext()) ?: "-"
+            val savedQueue = QueueHelper.getCurrentQueue(requireContext())
+
+            // tampilkan card/box antrian
+            queueBox?.visibility = View.VISIBLE
+            tvQueue?.text = "Nomor Antrian Anda: A$savedQueue\nNama: $savedName"
+
+            // 🔹 ambil ulang bundle tersimpan agar bisa diklik lagi
+            val restored = restoreLastPatientFromPrefs()
+            if (restored != null) {
+                lastPatientData = restored
+            } else {
+                val restoredBundle = Bundle().apply {
+                    putString("name", savedName)
+                    putInt("queueNumber", savedQueue)
+                    putInt("estimation", QueueHelper.getEstimation(requireContext()))
+                }
+                lastPatientData = restoredBundle
+            }
+        }
+
         // Klik box antrian → tampilkan detail via dialog
         queueBox?.setOnClickListener {
             lastPatientData?.let { bundle ->
                 showPatientDetailDialog(bundle)
+            } ?: run {
+                Toast.makeText(requireContext(), "Data pasien tidak ditemukan", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        // Cek apakah user sudah punya antrian tersimpan
+        if (QueueHelper.hasQueue(requireContext())) {
+            val savedName = QueueHelper.getPatientName(requireContext()) ?: "-"
+            val savedQueue = QueueHelper.getCurrentQueue(requireContext())
+            val savedEstimation = QueueHelper.getEstimation(requireContext())
+
+            queueBox?.visibility = View.VISIBLE
+            tvQueue?.text = "Nomor Antrian Anda: A$savedQueue\nNama: $savedName"
+
+            view.findViewById<TextView>(R.id.tvCurrentQueue)?.text = "$savedQueue"
+            view.findViewById<TextView>(R.id.tvLimitPatient)?.text = "$savedQueue/15"
+            view.findViewById<TextView>(R.id.tvEstimation)?.text = "Estimasi Antrian: $savedEstimation Menit"
         }
     }
 
@@ -98,11 +146,26 @@ class ScheduleFragment : Fragment() {
                 )
 
                 distanceKm = (distance[0] / 1000f).roundToInt()
-                queueNumber = (1..50).random()
 
+                // 🔹 Tambahkan antrian baru (mulai dari 1, bukan random)
+                QueueHelper.increaseQueue(requireContext())
+
+                // 🔹 Ambil nilai terbaru dari QueueHelper
+                val currentQueue = QueueHelper.getCurrentQueue(requireContext())
+                val estimation = QueueHelper.getEstimation(requireContext())
+
+                queueNumber = currentQueue
+
+                // 🔹 update tampilan
                 queueBox?.visibility = View.VISIBLE
                 val name = lastPatientData?.getString("patientName") ?: "-"
+                QueueHelper.savePatientName(requireContext(), name)
                 tvQueue?.text = "Nomor Antrian Anda: A$queueNumber\nNama: $name"
+
+                // 🔹 update juga bagian atas fragment
+                view?.findViewById<TextView>(R.id.tvCurrentQueue)?.text = "$currentQueue"
+                view?.findViewById<TextView>(R.id.tvLimitPatient)?.text = "$currentQueue/15"
+                view?.findViewById<TextView>(R.id.tvEstimation)?.text = "Estimasi Antrian: $estimation Menit"
             } else {
                 showError("Tidak dapat menemukan lokasi Anda.")
             }
@@ -118,10 +181,29 @@ class ScheduleFragment : Fragment() {
         queueBox?.visibility = View.GONE
         tvQueue?.text = "Nomor Antrian: -"
 
+        val rootView = view
+
         AlertDialog.Builder(requireContext())
-            .setTitle("Dihapus")
-            .setMessage("Antrian Anda telah dihapus.")
-            .setPositiveButton("OK", null)
+            .setTitle("Konfirmasi")
+            .setMessage("Apakah kamu yakin ingin menghapus antrian ini?")
+            .setPositiveButton("Ya") { _, _ ->
+                QueueHelper.decreaseQueue(requireContext())
+                QueueHelper.clearPatientData(requireContext())
+                clearLastPatientFromPrefs() // 🔹 hapus simpanan bundle
+
+                rootView?.post {
+                    val newQueue = QueueHelper.getCurrentQueue(requireContext())
+                    val newEstimation = QueueHelper.getEstimation(requireContext())
+
+                    rootView.findViewById<TextView>(R.id.tvCurrentQueue)?.text = "$newQueue"
+                    rootView.findViewById<TextView>(R.id.tvLimitPatient)?.text = "$newQueue/15"
+                    rootView.findViewById<TextView>(R.id.tvEstimation)?.text =
+                        "Estimasi Antrian: $newEstimation Menit"
+                }
+
+                Toast.makeText(requireContext(), "Antrian berhasil dihapus", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("Batal", null)
             .show()
     }
 
@@ -203,5 +285,36 @@ class ScheduleFragment : Fragment() {
             .setMessage(msg)
             .setPositiveButton("OK", null)
             .show()
+    }
+
+    // 🔹 Tambahan fungsi simpan/restore bundle pasien terakhir agar tidak hilang
+    private fun saveLastPatientToPrefs(bundle: Bundle) {
+        val prefs = requireContext().getSharedPreferences("patient_prefs", 0)
+        prefs.edit().apply {
+            putString("patientName", bundle.getString("patientName"))
+            putString("nik", bundle.getString("nik"))
+            putString("age", bundle.getString("age"))
+            putString("gender", bundle.getString("gender"))
+            putString("phone", bundle.getString("phone"))
+            putString("complaint", bundle.getString("complaint"))
+        }.apply()
+    }
+
+    private fun restoreLastPatientFromPrefs(): Bundle? {
+        val prefs = requireContext().getSharedPreferences("patient_prefs", 0)
+        val name = prefs.getString("patientName", null) ?: return null
+        return Bundle().apply {
+            putString("patientName", name)
+            putString("nik", prefs.getString("nik", "-"))
+            putString("age", prefs.getString("age", "-"))
+            putString("gender", prefs.getString("gender", "-"))
+            putString("phone", prefs.getString("phone", "-"))
+            putString("complaint", prefs.getString("complaint", "-"))
+        }
+    }
+
+    private fun clearLastPatientFromPrefs() {
+        val prefs = requireContext().getSharedPreferences("patient_prefs", 0)
+        prefs.edit().clear().apply()
     }
 }

@@ -57,11 +57,12 @@
                         android:textSize="14sp"
                         android:layout_marginBottom="4dp" />
 
+                    <!-- Nilai di-update dari kode -->
                     <TextView
                         android:id="@+id/tvCurrentQueue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="3"
+                        android:text="-"
                         android:textStyle="bold"
                         android:textColor="@color/white"
                         android:textSize="28sp" />
@@ -89,11 +90,12 @@
                         android:textSize="14sp"
                         android:layout_marginBottom="4dp" />
 
+                    <!-- Nilai di-update dari kode -->
                     <TextView
                         android:id="@+id/tvLimitPatient"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="4/15"
+                        android:text="-"
                         android:textStyle="bold"
                         android:textColor="@color/white"
                         android:textSize="28sp" />
@@ -118,11 +120,12 @@
                     app:tint="@color/white"
                     android:layout_marginEnd="8dp" />
 
+                <!-- Nilai di-update dari kode -->
                 <TextView
                     android:id="@+id/tvEstimation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Estimasi Antrian: 5 Menit"
+                    android:text="Estimasi Antrian: -"
                     android:textColor="@color/white"
                     android:textSize="14sp" />
             </LinearLayout>

@@ -166,9 +166,10 @@
                     app:tint="@color/white"/>
 
                 <TextView
+                    android:id="@+id/tvEstimasi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Estimasi Antrian 4 Menit..."
+                    android:text="Estimasi Antrian 0 Menit..."
                     android:textColor="@color/white"
                     android:textSize="14sp"/>
             </LinearLayout>
@@ -253,4 +254,89 @@
         app:tint="@color/white"
         android:contentDescription="Message Button"
         android:elevation="8dp" />
+
+    <!-- FLOATING CHAT BOX -->
+    <LinearLayout
+        android:id="@+id/chatBox"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_chatbox"
+        android:elevation="10dp"
+        android:padding="16dp"
+        android:visibility="gone"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toTopOf="@id/fabMessage"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- HEADER CHAT -->
+        <!-- HEADER CHAT (perbaikan) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="💬 Chat Customer Service"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
+
+            <ImageView
+                android:id="@+id/btnCloseChat"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:contentDescription="Close chat"
+                app:srcCompat="@drawable/ic_close"
+                android:padding="4dp"/>
+        </LinearLayout>
+
+        <!-- PESAN -->
+        <TextView
+            android:id="@+id/chatMessages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Halo!"
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
+            android:textSize="14sp"/>
+
+        <!-- OPSI PILIHAN -->
+        <TextView
+            android:id="@+id/optionKlinik"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@drawable/bg_option"
+            android:text="🏥 Informasi Klinik"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:layout_marginBottom="6dp"/>
+
+        <TextView
+            android:id="@+id/optionJadwal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@drawable/bg_option"
+            android:text="📅 Jadwal Dokter"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:layout_marginBottom="6dp"/>
+
+        <TextView
+            android:id="@+id/optionAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@drawable/bg_option"
+            android:text="💬 Chat dengan Admin/Dokter"
+            android:textColor="@color/black"
+            android:textSize="14sp"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
