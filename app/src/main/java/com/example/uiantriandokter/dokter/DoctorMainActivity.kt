@@ -3,7 +3,8 @@ package com.example.uiantriandokter.dokter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.uiantriandokter.dokter.databinding.ActivityDoctorMainBinding
+import com.example.uiantriandokter.R
+import com.example.uiantriandokter.databinding.ActivityDoctorMainBinding
 import com.example.uiantriandokter.dokter.ui.DoctorHomeFragment
 import com.example.uiantriandokter.dokter.ui.DoctorProfileFragment
 import com.example.uiantriandokter.dokter.ui.DoctorScheduleFragment

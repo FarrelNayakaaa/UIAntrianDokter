@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.example.uiantriandokter.databinding.FragmentDoctorHomeBinding
 import com.example.uiantriandokter.dokter.utils.DataDummy
 import com.example.uiantriandokter.R
+import com.google.android.material.snackbar.Snackbar
 
 class DoctorHomeFragment : Fragment() {
     private lateinit var binding: FragmentDoctorHomeBinding
@@ -15,6 +16,27 @@ class DoctorHomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentDoctorHomeBinding.inflate(inflater, container, false)
         updateUI()
+
+        // ✅ HISTORY button
+        binding.btnHistory.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.container, DoctorHistoryFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
+        // ✅ NOTIFY button (simple Snackbar)
+        binding.btnNotify.setOnClickListener {
+            Snackbar.make(binding.root, "You have 3 new notifications!", Snackbar.LENGTH_SHORT).show()
+        }
+
+        // ✅ PATIENT button (open/close time)
+        binding.btnPatient.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.container, DoctorPatientFragment())
+                .addToBackStack(null)
+                .commit()
+        }
 
         // Call patient
         binding.btnCall.setOnClickListener {
@@ -27,7 +49,7 @@ class DoctorHomeFragment : Fragment() {
             }
         }
 
-        // Close Queue button acts as "Done" in logic
+        // Close Queue button acts as "Done"
         binding.btnCloseQueue.setOnClickListener {
             if (DataDummy.patientList.isNotEmpty()) {
                 DataDummy.patientList[index].status = "Done"
