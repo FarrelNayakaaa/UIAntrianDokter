@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:background="@drawable/bg_patient_card"
+    android:elevation="3dp"
+    android:minHeight="130dp"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <!-- Profile Image -->
+    <ImageView
+        android:id="@+id/imgProfile"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="14dp"
+        android:background="@drawable/bg_image_circle"
+        android:clipToOutline="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_profile" />
+
+    <!-- Patient Info Container -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:gravity="start"
+        android:orientation="vertical">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:text="Biodata Pasien"
+            android:textColor="@android:color/black"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <!-- Name -->
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Nama : Felix Simatupang"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
+
+        <!-- Age -->
+        <TextView
+            android:id="@+id/tvAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Umur : 20"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
+
+        <!-- Complaint -->
+        <TextView
+            android:id="@+id/tvComplaint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="Keluhan : Kecanduan Roblox"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
+
+        <!-- Status -->
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Status : Done"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <!-- View Detail Button -->
+        <Button
+            android:id="@+id/btnViewDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:background="@drawable/bg_button_rounded"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="6dp"
+            android:text="VIEW DETAIL"
+            android:textAllCaps="true"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+    </LinearLayout>
+</LinearLayout>

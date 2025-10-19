@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#7DA6FF">
+
+    <!-- Back Button di atas container -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_button_white"
+        android:src="@drawable/ic_back"
+        android:contentDescription="Back" />
+
+    <!-- White Rounded Container -->
+    <LinearLayout
+        android:id="@+id/container"
+        android:orientation="vertical"
+        android:background="@drawable/bg_white_rounded_top"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="16dp"
+        android:paddingHorizontal="16dp">
+
+        <!-- Header Chip -->
+        <TextView
+            android:id="@+id/tvHeader"
+            android:text="History"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="#333333"
+            android:background="@drawable/bg_header_chip"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="24dp"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:layout_marginBottom="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!-- TableLayout Dummy Data -->
+        <TableLayout
+            android:id="@+id/tableHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*"
+            android:background="@android:color/white"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginBottom="16dp"
+            android:elevation="2dp">
+
+            <!-- Header Row -->
+            <TableRow
+                android:background="#E0E0E0"
+                android:padding="8dp">
+                <TextView
+                    android:text="ID"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_weight="1" />
+                <TextView
+                    android:text="Name"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_weight="1" />
+                <TextView
+                    android:text="Age"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_weight="1" />
+                <TextView
+                    android:text="Complaint"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_weight="2" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light">
+
+    <!-- Scrollable Content -->
+    <ScrollView
+        android:id="@+id/scroll_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Blue Header with curve -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_header_curve"
+                android:contentDescription="Header background" />
+
+            <!-- Greeting -->
+            <TextView
+                android:text="Hi, Dr. Jane"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginTop="-100dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <!-- Icon cards -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="16dp"
+                android:weightSum="3">
+
+                <!-- History -->
+                <LinearLayout
+                    android:id="@+id/btnHistory"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_card_white"
+                    android:gravity="center"
+                    android:layout_margin="4dp">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_history"
+                        app:tint="@color/green_light" />
+
+                    <TextView
+                        android:text="History"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp" />
+                </LinearLayout>
+
+                <!-- Notify -->
+                <LinearLayout
+                    android:id="@+id/btnNotify"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_card_white"
+                    android:gravity="center"
+                    android:layout_margin="4dp">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_notifications"
+                        app:tint="@color/yellow_light" />
+
+                    <TextView
+                        android:text="Notify"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp" />
+                </LinearLayout>
+
+                <!-- Patient -->
+                <LinearLayout
+                    android:id="@+id/btnPatient"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_card_white"
+                    android:gravity="center"
+                    android:layout_margin="4dp">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_patient"
+                        app:tint="@color/blue_light" />
+
+                    <TextView
+                        android:text="Patient"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Antrian Section -->
+            <TextView
+                android:text="Antrian"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_gravity="start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <!-- Blue card -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:background="@drawable/bg_card_blue"
+                android:gravity="center"
+                android:padding="16dp"
+                android:layout_marginTop="8dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+                    <TextView
+                        android:text="Antrian Ke"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tvQueueNumber"
+                        android:text="3"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="40dp"
+                    android:background="@android:color/white"
+                    android:layout_marginHorizontal="8dp" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+                    <TextView
+                        android:text="Total Pasien"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tvTotalPatients"
+                        android:text="15"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Action buttons -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp">
+
+                <Button
+                    android:id="@+id/btnOpenQueue"
+                    android:text="Buka Antrian"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/bg_button_blue"
+                    android:backgroundTint="@null"
+                    app:backgroundTint="@null"
+                    android:enabled="true"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/btnCloseQueue"
+                    android:text="Tutup Antrian"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/bg_button_blue"
+                    android:backgroundTint="@null"
+                    app:backgroundTint="@null"
+                    android:enabled="true"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <!-- Current patient card -->
+            <LinearLayout
+                android:id="@+id/cardCurrentPatient"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/bg_card_blue"
+                android:padding="12dp"
+                android:gravity="center_vertical"
+                android:elevation="2dp">
+
+                <TextView
+                    android:id="@+id/tvPatientName"
+                    android:text="EpanZ pake Z Waiting"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/white"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/btnCall"
+                    android:text="Call"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_button_green"
+                    android:backgroundTint="@null"
+                    app:backgroundTint="@null"
+                    android:enabled="true"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
