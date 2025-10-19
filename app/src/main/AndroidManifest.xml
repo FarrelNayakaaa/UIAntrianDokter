@@ -1,4 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
@@ -7,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.UIAntrianDokter">
 
+        <!-- ===== MAIN ENTRY POINT ===== -->
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -16,19 +24,31 @@
             </intent-filter>
         </activity>
 
+        <!-- ===== LOGIN & REGISTER ===== -->
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
+
+        <!-- ===== USER SECTION ===== -->
         <activity android:name=".MainActivity" />
 
+        <!-- ===== DOCTOR SECTION ===== -->
+        <activity
+            android:name=".dokter.ui.DoctorDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".dokter.DoctorMainActivity"
+            android:exported="false" />
+
+        <!-- ===== ADMIN SECTION (jika ada)
+        <activity
+            android:name=".admin.AdminMainActivity"
+            android:exported="false" /> ===== -->
+
+        <!-- ===== GOOGLE MAPS API ===== -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
 </manifest>

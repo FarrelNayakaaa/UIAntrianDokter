@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:background="@drawable/bg_patient_card"
+    android:padding="12dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp">
+
+    <ImageView
+        android:id="@+id/imgProfile"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_person"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/bg_image_circle"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Biodata Pasien"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/tvName"
+            android:text="Nama : Felix Simatupang"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/tvAge"
+            android:text="Umur : 20"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/tvComplaint"
+            android:text="Keluhan : Kecanduan Roblox"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:text="Status : Done"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnViewDetail"
+            android:text="VIEW DETAIL"
+            android:textAllCaps="true"
+            android:textSize="12sp"
+            android:paddingHorizontal="12dp"
+            android:background="@drawable/bg_button_rounded"
+            android:layout_gravity="start"
+            android:textColor="@android:color/black"/>
+    </LinearLayout>
+</LinearLayout>

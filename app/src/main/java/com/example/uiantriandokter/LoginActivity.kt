@@ -6,8 +6,16 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.uiantriandokter.dokter.DoctorMainActivity
 
 class LoginActivity : AppCompatActivity() {
+
+    // 🔹 Dummy akun dokter
+    private val doctorAccounts = mapOf(
+        "dokter1@gmail.com" to "dokter123",
+        "dr.jane@gmail.com" to "Jane123"
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -32,23 +40,31 @@ class LoginActivity : AppCompatActivity() {
         applyAlphaWatcher(etPassword)
 
         btnLogin.setOnClickListener {
-            val emailInput = etEmail.text.toString().trim()
-            val passwordInput = etPassword.text.toString().trim()
+            val email = etEmail.text.toString().trim()
+            val password = etPassword.text.toString().trim()
 
-            val savedEmail = SharedPrefHelper.getEmail(this)
-            val savedPassword = SharedPrefHelper.getPassword(this)
-
-            when {
-                emailInput.isEmpty() -> etEmail.error = "Masukkan email"
-                passwordInput.isEmpty() -> etPassword.error = "Masukkan password"
-                emailInput != savedEmail || passwordInput != savedPassword ->
-                    Toast.makeText(this, "Email atau password salah", Toast.LENGTH_SHORT).show()
-                else -> {
-                    Toast.makeText(this, "Login berhasil", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finish()
-                }
+            // Validasi input
+            if (email.isEmpty()) {
+                etEmail.error = "Masukkan email"
+                return@setOnClickListener
             }
+            if (password.isEmpty()) {
+                etPassword.error = "Masukkan password"
+                return@setOnClickListener
+            }
+
+            // 🔹 Cek apakah akun dokter
+            if (doctorAccounts.containsKey(email) && doctorAccounts[email] == password) {
+                Toast.makeText(this, "Login sebagai Dokter", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, DoctorMainActivity::class.java))
+                finish()
+                return@setOnClickListener
+            }
+
+            // 🔹 Jika bukan dokter → login sebagai user biasa
+            Toast.makeText(this, "Login sebagai User", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
 
         tvRegister.setOnClickListener {

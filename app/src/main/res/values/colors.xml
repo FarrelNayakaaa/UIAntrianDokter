@@ -36,4 +36,13 @@
 
     <!-- Variasi biru untuk highlight dan efek tekan -->
     <color name="blue_100">#E3F2FD</color>
+
+
+    <color name="blue_main">#4C84FF</color>
+    <color name="green_main">#27AE60</color>
+    <color name="gray_button">#BDBDBD</color>
+
+    <color name="blue_light">#AFC8FF</color>
+    <color name="green_light">#A4E8A2</color>
+    <color name="yellow_light">#F4E49E</color>
 </resources>
